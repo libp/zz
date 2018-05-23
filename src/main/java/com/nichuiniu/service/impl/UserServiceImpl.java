@@ -1,7 +1,7 @@
 package com.nichuiniu.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.nichuiniu.mapper.UserMapper;
+import com.nichuiniu.dao.UserMapper;
 import com.nichuiniu.model.User;
 import com.nichuiniu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
