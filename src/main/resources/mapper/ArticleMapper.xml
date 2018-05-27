@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nichuiniu.dao.ArticleMapper">
+    <resultMap id="BaseResultMap" type="com.nichuiniu.model.Article">
+        <id column="Id" property="id" jdbcType="INTEGER"/>
+        <result column="Num" property="num" jdbcType="VARCHAR"/>
+        <result column="Title" property="title" jdbcType="VARCHAR"/>
+        <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP"/>
+        <result column="GetTime" property="gettime" jdbcType="TIMESTAMP"/>
+        <result column="Author" property="author" jdbcType="VARCHAR"/>
+        <result column="ImgUrl" property="imgurl" jdbcType="VARCHAR"/>
+        <result column="Url" property="url" jdbcType="VARCHAR"/>
+        <result column="IsUse" property="isuse" jdbcType="INTEGER"/>
+        <result column="WebName" property="webname" jdbcType="VARCHAR"/>
+        <result column="Tag" property="tag" jdbcType="VARCHAR"/>
+        <result column="Category" property="category" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.nichuiniu.model.Article" extends="BaseResultMap">
+        <id column="Id" property="id" jdbcType="INTEGER"/>
+        <result column="Num" property="num" jdbcType="VARCHAR"/>
+        <result column="Title" property="title" jdbcType="VARCHAR"/>
+        <result column="Author" property="author" jdbcType="VARCHAR"/>
+        <result column="Content" property="content" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <resultMap id="ResultWithArticle" type="com.nichuiniu.model.Article" extends="BaseResultMap">
+        <result column="Content" property="content" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    Id, Num, Title, CreateTime, GetTime, Author, ImgUrl, Url, IsUse, WebName, Tag, Category
+  </sql>
+    <sql id="Blob_Column_List">
+    Content
+  </sql>
+    <sql id="Article_Column_List">
+   Id,Num,Title,Content,Author
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tbl_nichuiniu_article
+        where Id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_nichuiniu_article
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.nichuiniu.model.Article">
+    insert into tbl_nichuiniu_article (Id, Num, Title, 
+      CreateTime, GetTime, Author, 
+      ImgUrl, Url, IsUse, 
+      WebName, Tag, Category,
+      Content)
+    values (#{id,jdbcType=INTEGER}, #{num,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{gettime,jdbcType=TIMESTAMP}, #{author,jdbcType=VARCHAR}, 
+      #{imgurl,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{isuse,jdbcType=INTEGER}, 
+      #{webname,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR},
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.nichuiniu.model.Article">
+        insert into tbl_nichuiniu_article
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                Id,
+            </if>
+            <if test="num != null">
+                Num,
+            </if>
+            <if test="title != null">
+                Title,
+            </if>
+            <if test="createtime != null">
+                CreateTime,
+            </if>
+            <if test="gettime != null">
+                GetTime,
+            </if>
+            <if test="author != null">
+                Author,
+            </if>
+            <if test="imgurl != null">
+                ImgUrl,
+            </if>
+            <if test="url != null">
+                Url,
+            </if>
+            <if test="isuse != null">
+                IsUse,
+            </if>
+            <if test="webname != null">
+                WebName,
+            </if>
+            <if test="tag != null">
+                Tag,
+            </if>
+            <if test="category != null">
+                Category,
+            </if>
+            <if test="content != null">
+                Content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gettime != null">
+                #{gettime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="imgurl != null">
+                #{imgurl,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="isuse != null">
+                #{isuse,jdbcType=INTEGER},
+            </if>
+            <if test="webname != null">
+                #{webname,jdbcType=VARCHAR},
+            </if>
+            <if test="tag != null">
+                #{tag,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nichuiniu.model.Article">
+        update tbl_nichuiniu_article
+        <set>
+            <if test="num != null">
+                Num = #{num,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                Title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                CreateTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gettime != null">
+                GetTime = #{gettime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="author != null">
+                Author = #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="imgurl != null">
+                ImgUrl = #{imgurl,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                Url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="isuse != null">
+                IsUse = #{isuse,jdbcType=INTEGER},
+            </if>
+            <if test="webname != null">
+                WebName = #{webname,jdbcType=VARCHAR},
+            </if>
+            <if test="tag != null">
+                Tag = #{tag,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                Category = #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                Content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where Id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nichuiniu.model.Article">
+    update tbl_nichuiniu_article
+    set Num = #{num,jdbcType=VARCHAR},
+      Title = #{title,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      GetTime = #{gettime,jdbcType=TIMESTAMP},
+      Author = #{author,jdbcType=VARCHAR},
+      ImgUrl = #{imgurl,jdbcType=VARCHAR},
+      Url = #{url,jdbcType=VARCHAR},
+      IsUse = #{isuse,jdbcType=INTEGER},
+      WebName = #{webname,jdbcType=VARCHAR},
+      Tag = #{tag,jdbcType=VARCHAR},
+      Category = #{category,jdbcType=VARCHAR},
+      Content = #{content,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.nichuiniu.model.Article">
+    update tbl_nichuiniu_article
+    set Num = #{num,jdbcType=VARCHAR},
+      Title = #{title,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      GetTime = #{gettime,jdbcType=TIMESTAMP},
+      Author = #{author,jdbcType=VARCHAR},
+      ImgUrl = #{imgurl,jdbcType=VARCHAR},
+      Url = #{url,jdbcType=VARCHAR},
+      IsUse = #{isuse,jdbcType=INTEGER},
+      WebName = #{webname,jdbcType=VARCHAR},
+      Tag = #{tag,jdbcType=VARCHAR},
+      Category = #{category,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="random" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Article_Column_List"/>
+        from tbl_nichuiniu_article
+        WHERE  Category = #{category,jdbcType=VARCHAR}
+        and id >= (SELECT floor( RAND() * ((SELECT MAX(id) FROM tbl_nichuiniu_article)-(SELECT MIN(id) FROM tbl_nichuiniu_article)) + (SELECT MIN(id) FROM tbl_nichuiniu_article)))
+        ORDER BY id LIMIT 1;
+    </select>
+
+    <select id="recommend" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Article_Column_List"/>
+        from tbl_nichuiniu_article
+        WHERE  Category = #{category,jdbcType=VARCHAR}
+        and id =(SELECT RecommendId from tbl_nichuiniu_recommend where Id =( SELECT MAX(id) FROM tbl_nichuiniu_recommend));
+    </select>
+</mapper>
