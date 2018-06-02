@@ -219,11 +219,12 @@
 
     <select id="random" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
         select
-        <include refid="Article_Column_List"/>
-        from tbl_nichuiniu_article
-        WHERE  Category = #{category,jdbcType=VARCHAR}
-        and id >= (SELECT floor( RAND() * ((SELECT MAX(id) FROM tbl_nichuiniu_article)-(SELECT MIN(id) FROM tbl_nichuiniu_article)) + (SELECT MIN(id) FROM tbl_nichuiniu_article)))
-        ORDER BY id LIMIT 1;
+        t1.Id,t1.Num,t1.Title,t1.Content,t1.Author
+        from tbl_nichuiniu_article AS t1 JOIN (
+        SELECT floor( RAND() * ((SELECT MAX(id) FROM tbl_nichuiniu_article)-(SELECT MIN(id) FROM tbl_nichuiniu_article)) +
+        (SELECT MIN(id) FROM tbl_nichuiniu_article)) AS id) AS t2
+        WHERE t1.id >= t2.id
+        ORDER BY t1.id ASC LIMIT 1;
     </select>
 
     <select id="recommend" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">

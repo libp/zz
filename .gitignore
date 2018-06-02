@@ -26,4 +26,6 @@
 
 out/
 target/
-*-prod.yml
+
+*.yml
+!application-dev.yml
