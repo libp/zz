@@ -15,6 +15,9 @@ public interface ArticleMapper {
 
     Article recommend(String category);
 
+    Article articleID(int category);
+
+
     int updateByPrimaryKeySelective(Article record);
 
     int updateByPrimaryKeyWithBLOBs(Article record);

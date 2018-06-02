@@ -223,7 +223,7 @@
         from tbl_nichuiniu_article AS t1 JOIN (
         SELECT floor( RAND() * ((SELECT MAX(id) FROM tbl_nichuiniu_article)-(SELECT MIN(id) FROM tbl_nichuiniu_article)) +
         (SELECT MIN(id) FROM tbl_nichuiniu_article)) AS id) AS t2
-        WHERE t1.id >= t2.id
+        WHERE t1.Category= #{category,jdbcType=VARCHAR} AND t1.id >= t2.id
         ORDER BY t1.id ASC LIMIT 1;
     </select>
 
@@ -233,5 +233,12 @@
         from tbl_nichuiniu_article
         WHERE  Category = #{category,jdbcType=VARCHAR}
         and id =(SELECT RecommendId from tbl_nichuiniu_recommend where Id =( SELECT MAX(id) FROM tbl_nichuiniu_recommend));
+    </select>
+
+    <select id="articleID" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Article_Column_List"/>
+        from tbl_nichuiniu_article
+        where Id = #{id,jdbcType=INTEGER};
     </select>
 </mapper>

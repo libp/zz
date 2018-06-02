@@ -31,4 +31,9 @@ public class ArticleServiceImpl implements ArticleService{
     public Article recommend(String category) {
         return articleMapper.recommend(category);
     }
+
+    @Override
+    public Article articleID(int id) {
+        return articleMapper.articleID(id);
+    }
 }

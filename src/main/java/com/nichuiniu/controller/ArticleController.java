@@ -16,22 +16,32 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping(value = "/v1")
-public class RandomController {
+public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
 
     @ResponseBody
     @GetMapping("/random")
-    public Object getRandomContent(){
-        String  category = "z1";
+    public Object getRandomContent(
+            @RequestParam(name = "category", required = false, defaultValue = "z1")
+                    String category){
         return articleService.random(category);
     }
 
     @ResponseBody
     @GetMapping("/recommend")
-    public Object getRecommendContent(){
-        String  category = "z1";
+    public Object getRecommendContent(
+            @RequestParam(name = "category", required = false, defaultValue = "z1")
+                    String category){
         return articleService.recommend(category);
+    }
+
+    @ResponseBody
+    @GetMapping("/articleID")
+    public Object getArticleById(
+            @RequestParam(name = "id", required = false, defaultValue = "145528")
+                    int id){
+        return articleService.articleID(id);
     }
 }

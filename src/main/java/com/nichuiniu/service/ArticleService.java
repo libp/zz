@@ -13,4 +13,6 @@ public interface ArticleService {
 
     Article recommend(String category);
 
+    Article articleID(int id);
+
 }
