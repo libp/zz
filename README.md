@@ -25,5 +25,5 @@
 ### Links
 [SpiderScrapyArticle](https://github.com/libp/SpiderScrapyArticle)  
 [zzLite](https://github.com/libp/zzLite)  
-[littleweb](https://github.com/libp/littleweb)  
-[License MIT](https://github.com/tencent/wepy/blob/master/LICENSE)  
+[littleweb](https://github.com/libp/littleweb)
+[License MIT](https://github.com/tencent/wepy/blob/master/LICENSE)
