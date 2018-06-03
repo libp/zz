@@ -23,7 +23,7 @@
 * littleweb，基于vue的前段web应用源码
 
 ### Links
-[SpiderScrapyArticle](https://github.com/libp/SpiderScrapyArticle)
-[zzLite](https://github.com/libp/zzLite)
-[littleweb](https://github.com/libp/littleweb)
-[License MIT](https://github.com/tencent/wepy/blob/master/LICENSE)
+[SpiderScrapyArticle](https://github.com/libp/SpiderScrapyArticle)  
+[zzLite](https://github.com/libp/zzLite)  
+[littleweb](https://github.com/libp/littleweb)  
+[License MIT](https://github.com/tencent/wepy/blob/master/LICENSE)  
