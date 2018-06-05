@@ -2,6 +2,8 @@ package com.nichuiniu.dao;
 
 import com.nichuiniu.model.Article;
 
+import java.util.List;
+
 public interface ArticleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,6 +18,8 @@ public interface ArticleMapper {
     Article recommend(String category);
 
     Article articleID(int category);
+
+    List<Article> selectArticleByPage();
 
 
     int updateByPrimaryKeySelective(Article record);

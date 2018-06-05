@@ -2,6 +2,8 @@ package com.nichuiniu.service;
 
 import com.nichuiniu.model.Article;
 
+import java.util.List;
+
 /**
  * Created by libp on 2018/5/23 22:05
  */
@@ -14,5 +16,7 @@ public interface ArticleService {
     Article recommend(String category);
 
     Article articleID(int id);
+
+    List<Article> selectArticleByPage();
 
 }

@@ -8,6 +8,8 @@ import com.nichuiniu.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by libp on 2018/5/23 22:19
  */
@@ -35,5 +37,10 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     public Article articleID(int id) {
         return articleMapper.articleID(id);
+    }
+
+    @Override
+    public List<Article> selectArticleByPage() {
+        return articleMapper.selectArticleByPage();
     }
 }

@@ -241,4 +241,10 @@
         from tbl_nichuiniu_article
         where Id = #{id,jdbcType=INTEGER};
     </select>
+
+    <select id="selectArticleByPage" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Article_Column_List" />
+        from tbl_nichuiniu_article
+    </select>
 </mapper>
