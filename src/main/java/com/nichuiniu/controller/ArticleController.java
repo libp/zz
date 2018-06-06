@@ -1,6 +1,9 @@
 package com.nichuiniu.controller;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.nichuiniu.model.Article;
 import com.nichuiniu.model.User;
 import com.nichuiniu.service.ArticleService;
 import com.nichuiniu.service.UserService;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * Created by libp on 2018/5/23 21:38
@@ -54,6 +59,8 @@ public class ArticleController {
                     int pageSize){
         //开始分页
         PageHelper.startPage(pageNum,pageSize);
-        return articleService.selectArticleByPage();
+        List<Article> list = articleService.selectArticleByPage();
+        PageInfo page = new PageInfo(list);
+        return page;
     }
 }
