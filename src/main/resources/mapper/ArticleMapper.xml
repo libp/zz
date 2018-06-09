@@ -34,6 +34,9 @@
     <sql id="Article_Column_List">
    Id,Num,Title,Content,Author
   </sql>
+    <sql id="Article_about_List">
+        Id,Num,Title,Author
+    </sql>
     <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -244,7 +247,12 @@
 
     <select id="selectArticleByPage" resultMap="ResultMapWithBLOBs">
         select
-        <include refid="Article_Column_List" />
+        <include refid="Article_about_List" />
         from tbl_nichuiniu_article
     </select>
+
+    <insert id="insertRecommend" parameterType="java.lang.Integer">
+        insert into tbl_nichuiniu_recommend
+        (RecommendId) VALUES (#{id,jdbcType=INTEGER});
+    </insert>
 </mapper>

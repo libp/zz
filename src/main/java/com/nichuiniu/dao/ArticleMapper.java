@@ -11,13 +11,15 @@ public interface ArticleMapper {
 
     int insertSelective(Article record);
 
+    int insertRecommend(int id);
+
     Article selectByPrimaryKey(Integer id);
 
     Article random(String category);
 
     Article recommend(String category);
 
-    Article articleID(int category);
+    Article articleID(int id);
 
     List<Article> selectArticleByPage();
 

@@ -1,12 +1,10 @@
 package com.nichuiniu.controller;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nichuiniu.model.Article;
-import com.nichuiniu.model.User;
 import com.nichuiniu.service.ArticleService;
-import com.nichuiniu.service.UserService;
+import com.nichuiniu.util.ZzResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +18,14 @@ import java.util.List;
  * Created by libp on 2018/5/23 21:38
  */
 @Controller
-@RequestMapping(value = "/v1")
+@RequestMapping(value = "/article")
 public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
 
     @ResponseBody
-    @GetMapping("/random")
+    @GetMapping("/v1/random")
     public Object getRandomContent(
             @RequestParam(name = "category", required = false, defaultValue = "z1")
                     String category){
@@ -35,7 +33,7 @@ public class ArticleController {
     }
 
     @ResponseBody
-    @GetMapping("/recommend")
+    @GetMapping("/v1/recommend")
     public Object getRecommendContent(
             @RequestParam(name = "category", required = false, defaultValue = "z1")
                     String category){
@@ -43,7 +41,7 @@ public class ArticleController {
     }
 
     @ResponseBody
-    @GetMapping("/articleID")
+    @GetMapping("/v1/articleID")
     public Object getArticleById(
             @RequestParam(name = "id", required = false, defaultValue = "145528")
                     int id){
@@ -51,7 +49,15 @@ public class ArticleController {
     }
 
     @ResponseBody
-    @GetMapping("/selectArticleByPage")
+    @GetMapping("/v1/insertRecommend")
+    public ZzResult insertRecommend(
+            @RequestParam(name = "id", required = false, defaultValue = "145528")
+                    int id){
+        return articleService.insertRecommend(id);
+    }
+
+    @ResponseBody
+    @GetMapping("/v1/selectArticleByPage")
     public Object selectArticleByPage(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,

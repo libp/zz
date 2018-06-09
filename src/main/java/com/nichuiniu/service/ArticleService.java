@@ -1,6 +1,7 @@
 package com.nichuiniu.service;
 
 import com.nichuiniu.model.Article;
+import com.nichuiniu.util.ZzResult;
 
 import java.util.List;
 
@@ -18,5 +19,7 @@ public interface ArticleService {
     Article articleID(int id);
 
     List<Article> selectArticleByPage();
+
+    ZzResult insertRecommend(int id);
 
 }
