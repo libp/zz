@@ -23,10 +23,17 @@ public interface ArticleMapper {
 
     List<Article> selectArticleByPage();
 
+    List<Article> selectRecommendByPage();
+
+    int deleteRecommendById(Integer id);
 
     int updateByPrimaryKeySelective(Article record);
 
     int updateByPrimaryKeyWithBLOBs(Article record);
 
     int updateByPrimaryKey(Article record);
+
+    int selectArticleCount();
+
+    int selectRecommendArticleCount();
 }
