@@ -20,6 +20,14 @@ public interface ArticleService {
 
     List<Article> selectArticleByPage();
 
+    List<Article> selectRecommendByPage();
+
+    ZzResult deleteRecommendById(Integer id);
+
     ZzResult insertRecommend(int id);
+
+    int selectRecommendArticleCount();
+
+    int selectArticleCount();
 
 }

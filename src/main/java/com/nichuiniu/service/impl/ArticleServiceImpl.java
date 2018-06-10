@@ -49,6 +49,26 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
+    public List<Article> selectRecommendByPage() {
+        return articleMapper.selectRecommendByPage();
+    }
+
+    @Override
+    public ZzResult deleteRecommendById(Integer id) {
+        boolean flag = true;
+        String message = "删除成功";
+        try {
+            articleMapper.deleteRecommendById(id);
+        } catch(Exception e) {
+            flag = false;
+            message = "删除失败:";
+            logger.error(message, e);
+        }
+        ZzResult result = new ZzResult(flag, message);
+        return result;
+    }
+
+    @Override
     public ZzResult insertRecommend(int id){
         boolean flag = true;
         String message = "文章推荐成功";
@@ -61,5 +81,15 @@ public class ArticleServiceImpl implements ArticleService{
         }
         ZzResult result = new ZzResult(flag, message);
         return result;
+    }
+
+    @Override
+    public int selectRecommendArticleCount() {
+        return articleMapper.selectRecommendArticleCount();
+    }
+
+    @Override
+    public int selectArticleCount() {
+        return articleMapper.selectArticleCount();
     }
 }

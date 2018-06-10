@@ -255,4 +255,23 @@
         insert into tbl_nichuiniu_recommend
         (RecommendId) VALUES (#{id,jdbcType=INTEGER});
     </insert>
+
+    <select id="selectRecommendByPage" resultMap="ResultMapWithBLOBs">
+        select
+        t1.Id,t1.Num,t1.Title,t1.Content,t1.Author,t2.CreateTime
+        from tbl_nichuiniu_article  as t1,tbl_nichuiniu_recommend as t2 where t1.id=t2.RecommendId
+    </select>
+    <delete id="deleteRecommendById" parameterType="java.lang.Integer">
+        delete from tbl_nichuiniu_recommend
+        where RecommendId = #{RecommendId,jdbcType=INTEGER}
+    </delete>
+
+    <select id="selectArticleCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tbl_nichuiniu_article  where num >0;
+    </select>
+
+    <select id="selectRecommendArticleCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tbl_nichuiniu_recommend  where RecommendId >0;
+    </select>
+
 </mapper>
