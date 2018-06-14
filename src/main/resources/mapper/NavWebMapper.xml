@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nichuiniu.dao.NavWebMapper" >
+  <resultMap id="BaseResultMap" type="com.nichuiniu.model.NavWeb" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="WebTitle" property="webtitle" jdbcType="VARCHAR" />
+    <result column="WebUrl" property="weburl" jdbcType="VARCHAR" />
+    <result column="WebDesc" property="webdesc" jdbcType="VARCHAR" />
+    <result column="KeyWords" property="keywords" jdbcType="VARCHAR" />
+    <result column="Sort" property="sort" jdbcType="INTEGER" />
+    <result column="CategoryID" property="categoryid" jdbcType="INTEGER" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="UpdateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="Deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, WebTitle, WebUrl, WebDesc, KeyWords, Sort, CategoryID, CreateTime, UpdateTime, 
+    Deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_nichuiniu_nav_web
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_nichuiniu_nav_web
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nichuiniu.model.NavWeb" >
+    insert into tbl_nichuiniu_nav_web (Id, WebTitle, WebUrl, 
+      WebDesc, KeyWords, Sort, 
+      CategoryID, CreateTime, UpdateTime, 
+      Deleted)
+    values (#{id,jdbcType=INTEGER}, #{webtitle,jdbcType=VARCHAR}, #{weburl,jdbcType=VARCHAR}, 
+      #{webdesc,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{categoryid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nichuiniu.model.NavWeb" >
+    insert into tbl_nichuiniu_nav_web
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="webtitle != null" >
+        WebTitle,
+      </if>
+      <if test="weburl != null" >
+        WebUrl,
+      </if>
+      <if test="webdesc != null" >
+        WebDesc,
+      </if>
+      <if test="keywords != null" >
+        KeyWords,
+      </if>
+      <if test="sort != null" >
+        Sort,
+      </if>
+      <if test="categoryid != null" >
+        CategoryID,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="deleted != null" >
+        Deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="webtitle != null" >
+        #{webtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null" >
+        #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="webdesc != null" >
+        #{webdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null" >
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nichuiniu.model.NavWeb" >
+    update tbl_nichuiniu_nav_web
+    <set >
+      <if test="webtitle != null" >
+        WebTitle = #{webtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null" >
+        WebUrl = #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="webdesc != null" >
+        WebDesc = #{webdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        KeyWords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        Sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null" >
+        CategoryID = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nichuiniu.model.NavWeb" >
+    update tbl_nichuiniu_nav_web
+    set WebTitle = #{webtitle,jdbcType=VARCHAR},
+      WebUrl = #{weburl,jdbcType=VARCHAR},
+      WebDesc = #{webdesc,jdbcType=VARCHAR},
+      KeyWords = #{keywords,jdbcType=VARCHAR},
+      Sort = #{sort,jdbcType=INTEGER},
+      CategoryID = #{categoryid,jdbcType=INTEGER},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

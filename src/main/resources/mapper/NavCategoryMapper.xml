@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nichuiniu.dao.NavCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.nichuiniu.model.NavCategory" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Category" property="category" jdbcType="VARCHAR" />
+    <result column="Sort" property="sort" jdbcType="INTEGER" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="UpdateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="Deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Category, Sort, CreateTime, UpdateTime, Deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_nichuiniu_nav_category
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_nichuiniu_nav_category
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nichuiniu.model.NavCategory" >
+    insert into tbl_nichuiniu_nav_category (Id, Category, Sort, 
+      CreateTime, UpdateTime, Deleted
+      )
+    values (#{id,jdbcType=INTEGER}, #{category,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.nichuiniu.model.NavCategory" >
+    insert into tbl_nichuiniu_nav_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="category != null" >
+        Category,
+      </if>
+      <if test="sort != null" >
+        Sort,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="deleted != null" >
+        Deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nichuiniu.model.NavCategory" >
+    update tbl_nichuiniu_nav_category
+    <set >
+      <if test="category != null" >
+        Category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        Sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nichuiniu.model.NavCategory" >
+    update tbl_nichuiniu_nav_category
+    set Category = #{category,jdbcType=VARCHAR},
+      Sort = #{sort,jdbcType=INTEGER},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectNavCategoryId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    id
+    from tbl_nichuiniu_nav_category
+    where Deleted=0;
+  </select>
+</mapper>
