@@ -106,8 +106,8 @@
 
   <select id="selectNavCategoryId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
-    id
+    <include refid="Base_Column_List" />
     from tbl_nichuiniu_nav_category
-    where Deleted=0;
+    where Deleted=0 ORDER BY sort asc;
   </select>
 </mapper>
