@@ -1,7 +1,9 @@
 package com.nichuiniu.service.impl;
 
 import com.nichuiniu.dao.ArticleMapper;
+import com.nichuiniu.dao.RecommendArticleMapper;
 import com.nichuiniu.model.Article;
+import com.nichuiniu.model.RecommendArticle;
 import com.nichuiniu.service.ArticleService;
 
 import com.nichuiniu.util.ZzResult;
@@ -23,6 +25,9 @@ public class ArticleServiceImpl implements ArticleService{
     @Autowired
     private ArticleMapper articleMapper;
 
+    @Autowired
+    private RecommendArticleMapper recommendArticleMapper;
+
     @Override
     public Article selectByPrimaryKey(int id) {
         return articleMapper.selectByPrimaryKey(id);
@@ -41,6 +46,11 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     public Article articleID(int id) {
         return articleMapper.articleID(id);
+    }
+
+    @Override
+    public int selectNextArticle(int id) {
+        return articleMapper.selectNextArticle(id);
     }
 
     @Override
@@ -91,5 +101,10 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     public int selectArticleCount() {
         return articleMapper.selectArticleCount();
+    }
+
+    @Override
+    public RecommendArticle selectNewestArticle() {
+        return recommendArticleMapper.selectNewestArticle();
     }
 }

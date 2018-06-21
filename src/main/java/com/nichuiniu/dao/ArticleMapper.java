@@ -21,6 +21,8 @@ public interface ArticleMapper {
 
     Article articleID(int id);
 
+    int selectNextArticle(int id);
+
     List<Article> selectArticleByPage();
 
     List<Article> selectRecommendByPage();

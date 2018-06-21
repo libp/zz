@@ -1,6 +1,9 @@
 package com.nichuiniu.dao;
 
+import com.nichuiniu.model.Article;
 import com.nichuiniu.model.NavWeb;
+
+import java.util.List;
 
 public interface NavWebMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface NavWebMapper {
     int updateByPrimaryKeySelective(NavWeb record);
 
     int updateByPrimaryKey(NavWeb record);
+
+    List<NavWeb> selectNavByCategoryID(int id);
 }

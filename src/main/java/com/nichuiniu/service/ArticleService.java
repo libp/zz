@@ -1,6 +1,7 @@
 package com.nichuiniu.service;
 
 import com.nichuiniu.model.Article;
+import com.nichuiniu.model.RecommendArticle;
 import com.nichuiniu.util.ZzResult;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public interface ArticleService {
 
     Article articleID(int id);
 
+    int selectNextArticle(int id);
+
     List<Article> selectArticleByPage();
 
     List<Article> selectRecommendByPage();
@@ -29,5 +32,7 @@ public interface ArticleService {
     int selectRecommendArticleCount();
 
     int selectArticleCount();
+
+    RecommendArticle selectNewestArticle();
 
 }

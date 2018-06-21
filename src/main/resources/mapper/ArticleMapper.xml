@@ -32,7 +32,7 @@
     Content
   </sql>
     <sql id="Article_Column_List">
-   Id,Num,Title,Content,Author
+   Id,Num,Title,Content,Author,CreateTime
   </sql>
     <sql id="Article_about_List">
         Id,Num,Title,Author
@@ -273,5 +273,13 @@
     <select id="selectRecommendArticleCount" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM tbl_nichuiniu_recommend  where RecommendId >0;
     </select>
+
+    <select id="selectNextArticle" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+       select
+        id
+        from tbl_nichuiniu_article
+        where id = (select min(id) from tbl_nichuiniu_article where id > #{id,jdbcType=INTEGER});
+    </select>
+
 
 </mapper>
