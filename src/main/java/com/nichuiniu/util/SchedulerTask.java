@@ -36,7 +36,7 @@ public class SchedulerTask {
         if(hours<24) {
             logger.info(now.getTime()+" not need to update.last update time is "+hours+ "hours ago");
         }else {
-            int nextid = articleService.selectNextArticle(recommendArticle.getId());
+            int nextid = articleService.selectNextArticle(recommendArticle.getRecommendid());
             if(nextid!=0){
                 articleService.insertRecommend(nextid);
                 logger.info(now.getTime()+" auto update .last update time is "+hours+ "hours ago");
