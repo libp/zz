@@ -39,5 +39,13 @@ public class WanHGImgController {
         return page;
     }
 
+    @ResponseBody
+    @GetMapping("/getImageById")
+    public Object getImageById(
+            @RequestParam(name = "id", required = false, defaultValue = "483")
+                    int id){
+        return wanHGImgService.getImageById(id);
+    }
+
 
 }

@@ -25,4 +25,9 @@ public class WanHGImgServiceImpl implements WanHGImgService{
     public List<WanHGImg> selectImgByPage(String categroy) {
         return wanHGImgMapper.selectImgByPage(categroy);
     }
+
+    @Override
+    public WanHGImg getImageById(int id) {
+        return wanHGImgMapper.getImageById(id);
+    }
 }

@@ -11,6 +11,8 @@ import java.util.List;
 public interface WanHGImgService {
 
     List<WanHGImg> selectImgByPage(String categroy);
+
+    WanHGImg  getImageById(int id);
 }
 
 
