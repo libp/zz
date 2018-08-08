@@ -43,7 +43,6 @@ public class SysParamsController {
                     String usagescenario,
             @RequestParam(name = "paramskey", required = false, defaultValue = "")
                     String paramskey){
-        //开始分页
         PageHelper.startPage(pageNum,pageSize);
         SysParams sysParams = new SysParams();
         sysParams.setUsagescenario(usagescenario);
