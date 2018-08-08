@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nichuiniu.dao.WanHGImgMapper">
+  <resultMap id="BaseResultMap" type="com.nichuiniu.model.WanHGImg">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Num" jdbcType="VARCHAR" property="num" />
+    <result column="ImgCount" jdbcType="INTEGER" property="imgcount" />
+    <result column="Title" jdbcType="VARCHAR" property="title" />
+    <result column="Category" jdbcType="VARCHAR" property="category" />
+    <result column="Tag" jdbcType="VARCHAR" property="tag" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="Deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <resultMap  id="ResultMapWithBLOBs" type="com.nichuiniu.model.WanHGImg" extends="BaseResultMap">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Num, ImgCount, Title, Category, Tag, CreateTime, UpdateTime, Deleted
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tbl_nichuiniu_img
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_nichuiniu_img
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nichuiniu.model.WanHGImg">
+    insert into tbl_nichuiniu_img (Id, Num, ImgCount, 
+      Title, Category, Tag, 
+      CreateTime, UpdateTime, Deleted, 
+      Description)
+    values (#{id,jdbcType=INTEGER}, #{num,jdbcType=VARCHAR}, #{imgcount,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nichuiniu.model.WanHGImg">
+    insert into tbl_nichuiniu_img
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="num != null">
+        Num,
+      </if>
+      <if test="imgcount != null">
+        ImgCount,
+      </if>
+      <if test="title != null">
+        Title,
+      </if>
+      <if test="category != null">
+        Category,
+      </if>
+      <if test="tag != null">
+        Tag,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="deleted != null">
+        Deleted,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="imgcount != null">
+        #{imgcount,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nichuiniu.model.WanHGImg">
+    update tbl_nichuiniu_img
+    <set>
+      <if test="num != null">
+        Num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="imgcount != null">
+        ImgCount = #{imgcount,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        Title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        Category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        Tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nichuiniu.model.WanHGImg">
+    update tbl_nichuiniu_img
+    set Num = #{num,jdbcType=VARCHAR},
+      ImgCount = #{imgcount,jdbcType=INTEGER},
+      Title = #{title,jdbcType=VARCHAR},
+      Category = #{category,jdbcType=VARCHAR},
+      Tag = #{tag,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nichuiniu.model.WanHGImg">
+    update tbl_nichuiniu_img
+    set Num = #{num,jdbcType=VARCHAR},
+      ImgCount = #{imgcount,jdbcType=INTEGER},
+      Title = #{title,jdbcType=VARCHAR},
+      Category = #{category,jdbcType=VARCHAR},
+      Tag = #{tag,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="selectImgByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_nichuiniu_img where  Category = #{category,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getImageById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List"/>
+    from tbl_nichuiniu_img
+    where Id = #{id,jdbcType=INTEGER};
+  </select>
+</mapper>

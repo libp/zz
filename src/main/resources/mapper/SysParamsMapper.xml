@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nichuiniu.dao.SysParamsMapper">
+  <resultMap id="BaseResultMap" type="com.nichuiniu.model.SysParams">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="ParamsKey" jdbcType="VARCHAR" property="paramskey" />
+    <result column="ParamsValue" jdbcType="VARCHAR" property="paramsvalue" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="UsageScenario" jdbcType="VARCHAR" property="usagescenario" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="Deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, ParamsKey, ParamsValue, Name, UsageScenario, CreateTime, UpdateTime, Deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_nichuiniu_params
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_nichuiniu_params
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nichuiniu.model.SysParams">
+    insert into tbl_nichuiniu_params (Id, ParamsKey, ParamsValue, 
+      Name, UsageScenario, CreateTime, 
+      UpdateTime, Deleted)
+    values (#{id,jdbcType=INTEGER}, #{paramskey,jdbcType=VARCHAR}, #{paramsvalue,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{usagescenario,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nichuiniu.model.SysParams">
+    insert into tbl_nichuiniu_params
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="paramskey != null">
+        ParamsKey,
+      </if>
+      <if test="paramsvalue != null">
+        ParamsValue,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="usagescenario != null">
+        UsageScenario,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="deleted != null">
+        Deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="paramskey != null">
+        #{paramskey,jdbcType=VARCHAR},
+      </if>
+      <if test="paramsvalue != null">
+        #{paramsvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="usagescenario != null">
+        #{usagescenario,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nichuiniu.model.SysParams">
+    update tbl_nichuiniu_params
+    <set>
+      <if test="key != null">
+        Key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        Value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="usagescenario != null">
+        UsageScenario = #{usagescenario,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nichuiniu.model.SysParams">
+    update tbl_nichuiniu_params
+    set Key = #{key,jdbcType=VARCHAR},
+      Value = #{value,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      UsageScenario = #{usagescenario,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectSysParams" parameterType="com.nichuiniu.model.SysParams" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_nichuiniu_params
+    where
+      UsageScenario = #{usagescenario,jdbcType=VARCHAR}
+    <if test="paramskey != null and paramskey !=''">
+      and ParamsKey = #{paramskey,jdbcType=VARCHAR}
+    </if>
+     and IFNULL (Deleted,0)  != 1
+  </select>
+
+  <select id="selectSysParamsUsageScenario" parameterType="com.nichuiniu.model.SysParams" resultType="java.lang.String">
+    select
+    UsageScenario
+    from tbl_nichuiniu_params
+    group by  UsageScenario
+  </select>
+
+</mapper>
