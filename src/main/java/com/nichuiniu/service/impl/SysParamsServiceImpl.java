@@ -4,6 +4,7 @@ import com.nichuiniu.dao.SysParamsMapper;
 import com.nichuiniu.dao.WanHGImgMapper;
 import com.nichuiniu.model.SysParams;
 import com.nichuiniu.service.SysParamsService;
+import com.nichuiniu.util.ZzResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,20 @@ public class SysParamsServiceImpl implements SysParamsService{
     @Override
     public List<SysParams> selectSysParams(SysParams sysParams) {
         return sysParamsMapper.selectSysParams(sysParams);
+    }
+
+    @Override
+    public ZzResult updateByPrimaryKeySelective(SysParams record) {
+        boolean flag = true;
+        String message = "参数修改成功";
+        try {
+            sysParamsMapper.updateByPrimaryKeySelective(record);
+        } catch(Exception e) {
+            flag = false;
+            message = "参数修改失败:";
+            logger.error(message, e);
+        }
+        ZzResult result = new ZzResult(flag, message);
+        return result;
     }
 }

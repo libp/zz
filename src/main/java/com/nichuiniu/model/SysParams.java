@@ -9,7 +9,7 @@ public class SysParams {
 
     private String paramsvalue;
 
-    private String name;
+    private String paramsname;
 
     private String usagescenario;
 
@@ -43,12 +43,12 @@ public class SysParams {
         this.paramsvalue = paramsvalue == null ? null : paramsvalue.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getParamsname() {
+        return paramsname;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setParamsname(String paramsname) {
+        this.paramsname = paramsname == null ? null : paramsname.trim();
     }
 
     public String getUsagescenario() {

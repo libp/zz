@@ -5,14 +5,14 @@
     <id column="Id" jdbcType="INTEGER" property="id" />
     <result column="ParamsKey" jdbcType="VARCHAR" property="paramskey" />
     <result column="ParamsValue" jdbcType="VARCHAR" property="paramsvalue" />
-    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="ParamsName" jdbcType="VARCHAR" property="paramsname" />
     <result column="UsageScenario" jdbcType="VARCHAR" property="usagescenario" />
     <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
     <result column="Deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    Id, ParamsKey, ParamsValue, Name, UsageScenario, CreateTime, UpdateTime, Deleted
+    Id, ParamsKey, ParamsValue, ParamsName, UsageScenario, CreateTime, UpdateTime, Deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,10 +26,10 @@
   </delete>
   <insert id="insert" parameterType="com.nichuiniu.model.SysParams">
     insert into tbl_nichuiniu_params (Id, ParamsKey, ParamsValue, 
-      Name, UsageScenario, CreateTime, 
+      ParamsName, UsageScenario, CreateTime, 
       UpdateTime, Deleted)
     values (#{id,jdbcType=INTEGER}, #{paramskey,jdbcType=VARCHAR}, #{paramsvalue,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{usagescenario,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{paramsname,jdbcType=VARCHAR}, #{usagescenario,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
       #{updatetime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.nichuiniu.model.SysParams">
@@ -44,8 +44,8 @@
       <if test="paramsvalue != null">
         ParamsValue,
       </if>
-      <if test="name != null">
-        Name,
+      <if test="paramsname != null">
+        ParamsName,
       </if>
       <if test="usagescenario != null">
         UsageScenario,
@@ -70,8 +70,8 @@
       <if test="paramsvalue != null">
         #{paramsvalue,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="paramsname != null">
+        #{paramsname,jdbcType=VARCHAR},
       </if>
       <if test="usagescenario != null">
         #{usagescenario,jdbcType=VARCHAR},
@@ -90,14 +90,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.nichuiniu.model.SysParams">
     update tbl_nichuiniu_params
     <set>
-      <if test="key != null">
-        Key = #{key,jdbcType=VARCHAR},
+      <if test="paramskey != null">
+        ParamsKey = #{paramskey,jdbcType=VARCHAR},
       </if>
-      <if test="value != null">
-        Value = #{value,jdbcType=VARCHAR},
+      <if test="paramsvalue != null">
+        ParamsValue = #{paramsvalue,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        Name = #{name,jdbcType=VARCHAR},
+      <if test="paramsname != null">
+        ParamsName = #{paramsname,jdbcType=VARCHAR},
       </if>
       <if test="usagescenario != null">
         UsageScenario = #{usagescenario,jdbcType=VARCHAR},
@@ -116,9 +116,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nichuiniu.model.SysParams">
     update tbl_nichuiniu_params
-    set Key = #{key,jdbcType=VARCHAR},
-      Value = #{value,jdbcType=VARCHAR},
-      Name = #{name,jdbcType=VARCHAR},
+    set ParamsKey = #{paramskey,jdbcType=VARCHAR},
+      ParamsValue = #{paramsvalue,jdbcType=VARCHAR},
+      ParamsName = #{paramsname,jdbcType=VARCHAR},
       UsageScenario = #{usagescenario,jdbcType=VARCHAR},
       CreateTime = #{createtime,jdbcType=TIMESTAMP},
       UpdateTime = #{updatetime,jdbcType=TIMESTAMP},

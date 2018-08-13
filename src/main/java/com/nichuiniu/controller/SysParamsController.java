@@ -1,5 +1,7 @@
 package com.nichuiniu.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nichuiniu.model.SysParams;
@@ -10,12 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName SysParamsController
@@ -50,5 +50,12 @@ public class SysParamsController {
         List<SysParams> list = sysParamsService.selectSysParams(sysParams);
         PageInfo page = new PageInfo(list);
         return page;
+    }
+
+    @ResponseBody
+    @PostMapping("/updateByPrimaryKeySelective")
+    public Object updateByPrimaryKeySelective(@RequestBody String  sysParams){
+        SysParams sys = JSONObject.parseObject(sysParams,SysParams.class);
+        return sysParamsService.updateByPrimaryKeySelective(sys);
     }
 }

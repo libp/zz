@@ -1,6 +1,7 @@
 package com.nichuiniu.service;
 
 import com.nichuiniu.model.SysParams;
+import com.nichuiniu.util.ZzResult;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ import java.util.List;
  **/
 public interface SysParamsService {
     List<SysParams> selectSysParams(SysParams sysParams);
+
+    ZzResult updateByPrimaryKeySelective(SysParams record);
 }
