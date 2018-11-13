@@ -1,0 +1,20 @@
+package com.nichuiniu.constant;
+
+/**
+ * @ClassName WebConst
+ * @Author libp
+ * @Description
+ * @Date 2018/11/9 21:31
+ **/
+public class WebConst {
+
+    /**
+     * 腾讯审核开关
+     */
+    public static String TENCENT_REVIEW = "TENCENT_REVIEW";
+
+    /**
+     * 绿色图片
+     */
+    public static String GREEN_IMG = "GREEN_IMG";
+}

@@ -1,6 +1,7 @@
 package com.nichuiniu.dao;
 
 import com.nichuiniu.model.SysParams;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,8 @@ public interface SysParamsMapper {
     int updateByPrimaryKey(SysParams record);
 
     List<SysParams> selectSysParams(SysParams sysParams);
+
+    String selectSysParamsValue(@Param("paramsKey") String paramsKey);
+
+    int updateParamsValueByKey(@Param("paramsValue") String paramsValue,@Param("paramsKey") String paramsKey);
 }

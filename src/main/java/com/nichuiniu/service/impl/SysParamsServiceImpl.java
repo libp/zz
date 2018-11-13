@@ -45,4 +45,14 @@ public class SysParamsServiceImpl implements SysParamsService{
         ZzResult result = new ZzResult(flag, message);
         return result;
     }
+
+    @Override
+    public String selectSysParamsValue(String paramsKey) {
+        return sysParamsMapper.selectSysParamsValue(paramsKey);
+    }
+
+    @Override
+    public int updateParamsValueByKey(String paramsValue, String paramsKey) {
+        return sysParamsMapper.updateParamsValueByKey(paramsValue,paramsKey);
+    }
 }

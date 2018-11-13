@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.nichuiniu.constant.WebConst;
 import com.nichuiniu.model.SysParams;
 import com.nichuiniu.model.WanHGImg;
 import com.nichuiniu.service.SysParamsService;
@@ -58,4 +59,20 @@ public class SysParamsController {
         SysParams sys = JSONObject.parseObject(sysParams,SysParams.class);
         return sysParamsService.updateByPrimaryKeySelective(sys);
     }
+
+    @ResponseBody
+    @GetMapping("/selectSysParamsValue")
+    public Object selectSysParamsValue(){
+        return sysParamsService.selectSysParamsValue(WebConst.TENCENT_REVIEW);
+    }
+
+    @ResponseBody
+    @GetMapping("/updateParamsValueByKey")
+    public Object updateParamsValueByKey(@RequestParam(name = "paramsValue", required = false, defaultValue = "")
+                                                     String paramsValue,
+                                         @RequestParam(name = "paramsKey", required = false, defaultValue = "")
+                                                 String paramsKey){
+        return sysParamsService.updateParamsValueByKey(paramsValue,paramsKey);
+    }
+
 }

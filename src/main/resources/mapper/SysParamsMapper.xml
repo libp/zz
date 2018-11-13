@@ -126,16 +126,29 @@
     where Id = #{id,jdbcType=INTEGER}
   </update>
 
+  <!--查询所有系统参数-->
   <select id="selectSysParams" parameterType="com.nichuiniu.model.SysParams" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from tbl_nichuiniu_params
     where
+    <if test="usagescenario != null and usagescenario !=''">
       UsageScenario = #{usagescenario,jdbcType=VARCHAR}
+    </if>
     <if test="paramskey != null and paramskey !=''">
       and ParamsKey = #{paramskey,jdbcType=VARCHAR}
     </if>
      and IFNULL (Deleted,0)  != 1
+  </select>
+
+  <!--查询参数值-->
+  <select id="selectSysParamsValue"  resultType="java.lang.String">
+    select
+    ParamsValue
+    from tbl_nichuiniu_params
+    where
+      ParamsKey = #{paramsKey,jdbcType=VARCHAR}
+    and IFNULL (Deleted,0)  != 1
   </select>
 
   <select id="selectSysParamsUsageScenario" parameterType="com.nichuiniu.model.SysParams" resultType="java.lang.String">
@@ -144,5 +157,12 @@
     from tbl_nichuiniu_params
     group by  UsageScenario
   </select>
+
+  <update id="updateParamsValueByKey">
+    update tbl_nichuiniu_params
+    set
+    ParamsValue = #{paramsValue,jdbcType=VARCHAR}
+    where ParamsKey = #{paramsKey,jdbcType=VARCHAR}
+  </update>
 
 </mapper>

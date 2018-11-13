@@ -15,4 +15,9 @@ public interface SysParamsService {
     List<SysParams> selectSysParams(SysParams sysParams);
 
     ZzResult updateByPrimaryKeySelective(SysParams record);
+
+    String selectSysParamsValue(String paramsKey);
+
+    int updateParamsValueByKey( String paramsValue,String paramsKey);
+
 }

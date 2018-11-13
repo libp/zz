@@ -2,11 +2,15 @@ package com.nichuiniu.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.nichuiniu.constant.WebConst;
 import com.nichuiniu.model.Article;
+import com.nichuiniu.model.SysParams;
 import com.nichuiniu.model.WanHGImg;
 import com.nichuiniu.service.ArticleService;
+import com.nichuiniu.service.SysParamsService;
 import com.nichuiniu.service.WanHGImgService;
 import com.nichuiniu.util.ZzResult;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +26,9 @@ public class WanHGImgController {
 
     @Autowired
     private WanHGImgService wanHGImgService;
+
+    @Autowired
+    private SysParamsService sysParamsService;
 
     @ResponseBody
     @GetMapping("/selectImgByPage")
@@ -42,10 +49,74 @@ public class WanHGImgController {
     @ResponseBody
     @GetMapping("/getImageById")
     public Object getImageById(
-            @RequestParam(name = "id", required = false, defaultValue = "483")
+            @RequestParam(name = "id", required = false, defaultValue = "500")
                     int id){
         return wanHGImgService.getImageById(id);
     }
 
+    @ResponseBody
+    @GetMapping("/getImgByTagID")
+    public Object getImgByTagID(
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
+                    int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10")
+                    int pageSize,
+            @RequestParam(name = "tagid", required = false, defaultValue = "20")
+                    int tagid){
+        PageHelper.startPage(pageNum,pageSize);
+        List<WanHGImg> list = wanHGImgService.getImgByTagID(tagid);
+        PageInfo page = new PageInfo(list);
+        return page;
+    }
 
+    @ResponseBody
+    @GetMapping("/updateByPrimaryKeySelective")
+    public Object updateByPrimaryKeySelective(
+            @RequestParam(name = "id", required = false, defaultValue = "500")
+                    int id,
+            @RequestParam(name = "scores", required = false, defaultValue = "1")
+                    int scores){
+        WanHGImg whg = new WanHGImg();
+        whg.setId(id);
+        whg.setScores(scores);
+        return wanHGImgService.updateByPrimaryKeySelective(whg);
+    }
+
+    @ResponseBody
+    @GetMapping("/getImageByRandom")
+    public Object getImageByRandom(
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
+                    int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10")
+                    int pageSize,
+            @RequestParam(name = "category", required = false)
+                    String category){
+
+        String  auditSwitch = sysParamsService.selectSysParamsValue(WebConst.TENCENT_REVIEW);
+        if(auditSwitch!=null && auditSwitch.equalsIgnoreCase("TRUE")){
+            return wanHGImgService.getImageByRandom(WebConst.GREEN_IMG,pageNum,pageSize);
+        }
+        return wanHGImgService.getImageByRandom(category,pageNum,pageSize);
+    }
+
+    @ResponseBody
+    @GetMapping("/updateAuditImg")
+    public Object updateAuditImg(@RequestParam(name = "deleted", required = false, defaultValue = "1")
+                                 int deleted){
+        return wanHGImgService.updateAuditImg(deleted,WebConst.GREEN_IMG);
+    }
+
+    @ResponseBody
+    @GetMapping("/selectImgByScores")
+    public Object selectImgByScores(
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
+                    int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10")
+                    int pageSize){
+
+        PageHelper.startPage(pageNum,pageSize);
+        List<WanHGImg> list = wanHGImgService.selectImgByScores();
+        PageInfo page = new PageInfo(list);
+        return  page;
+    }
 }

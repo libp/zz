@@ -5,6 +5,7 @@
     <id column="Id" jdbcType="INTEGER" property="id" />
     <result column="Num" jdbcType="VARCHAR" property="num" />
     <result column="ImgCount" jdbcType="INTEGER" property="imgcount" />
+    <result column="Scores" jdbcType="INTEGER" property="scores" />
     <result column="Title" jdbcType="VARCHAR" property="title" />
     <result column="Category" jdbcType="VARCHAR" property="category" />
     <result column="Tag" jdbcType="VARCHAR" property="tag" />
@@ -16,7 +17,7 @@
     <result column="Description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
   <sql id="Base_Column_List">
-    Id, Num, ImgCount, Title, Category, Tag, CreateTime, UpdateTime, Deleted
+    Id, Num, ImgCount, Scores,Title, Category, Tag, CreateTime, UpdateTime, Deleted
   </sql>
   <sql id="Blob_Column_List">
     Description
@@ -119,6 +120,9 @@
       <if test="imgcount != null">
         ImgCount = #{imgcount,jdbcType=INTEGER},
       </if>
+      <if test="scores != null">
+        Scores = #{scores,jdbcType=INTEGER},
+      </if>
       <if test="title != null">
         Title = #{title,jdbcType=VARCHAR},
       </if>
@@ -159,6 +163,7 @@
   <update id="updateByPrimaryKey" parameterType="com.nichuiniu.model.WanHGImg">
     update tbl_nichuiniu_img
     set Num = #{num,jdbcType=VARCHAR},
+      Scores = #{scores,jdbcType=INTEGER},
       ImgCount = #{imgcount,jdbcType=INTEGER},
       Title = #{title,jdbcType=VARCHAR},
       Category = #{category,jdbcType=VARCHAR},
@@ -168,19 +173,53 @@
       Deleted = #{deleted,jdbcType=BIT}
     where Id = #{id,jdbcType=INTEGER}
   </update>
-
-
-
   <select id="selectImgByPage" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from tbl_nichuiniu_img where  Category = #{category,jdbcType=VARCHAR}
   </select>
-
   <select id="getImageById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select
     <include refid="Base_Column_List"/>
     from tbl_nichuiniu_img
     where Id = #{id,jdbcType=INTEGER};
   </select>
+  <select id="getImgByTagID" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM tbl_nichuiniu_img  where Num in (
+    SELECT ImgNum from tbl_nichuiniu_img_tags where Tagid = #{tagid,jdbcType=INTEGER})
+  </select>
+
+  <!--获取所有图片的ID-->
+  <select id="getAllImgId" resultType="java.lang.Integer" >
+  SELECT id from tbl_nichuiniu_img where Deleted!=1
+    <if test="category != null">
+      AND Category = #{category,jdbcType=VARCHAR}
+    </if> ;
+  </select>
+
+<!--根据ID查询-->
+  <select id="selectImgByIdList" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM tbl_nichuiniu_img
+    WHERE id in
+    <foreach item="item" index="index" collection="list"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+<!--更新审核使用图片-->
+  <update id="updateAuditImg">
+    update tbl_nichuiniu_img
+    set
+    Deleted = #{deleted,jdbcType=BIT}
+    where Category = #{category,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectImgByScores" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_nichuiniu_img where Deleted!=1 ORDER BY Scores desc
+  </select>
+
+
 </mapper>

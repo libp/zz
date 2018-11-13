@@ -9,6 +9,8 @@ public class WanHGImg {
 
     private Integer imgcount;
 
+    private Integer scores;
+
     private String title;
 
     private String category;
@@ -22,6 +24,14 @@ public class WanHGImg {
     private Boolean deleted;
 
     private String description;
+
+    public Integer getScores() {
+        return scores;
+    }
+
+    public void setScores(Integer scores) {
+        this.scores = scores;
+    }
 
     public Integer getId() {
         return id;
