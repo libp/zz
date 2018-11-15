@@ -6,7 +6,7 @@ before_install:
   -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 - mv src/main/resources/application-dev.yml src/main/resources/application.yml
-- sed -i 's/password: root/password: $PASSWD/g' src/main/resources/application.yml
+- sed -i 's/password:root/password: $PASSWD/g' src/main/resources/application.yml
 - sed -i 's/127.0.0.1/$DBIP/g' src/main/resources/application.yml
 addons:
   ssh_known_hosts: "$IP"
@@ -21,4 +21,4 @@ script:
 after_script:
 - pwd
 - scp -o StrictHostKeyChecking=no -r target/  root@$IP:/opt/zz/
-- ssh root$IP "cd /opt/zz/ && sh /opt/zz/travisAuto.sh start"
+- ssh root$IP 'cd /opt/zz/ && sh /opt/zz/travisAuto.sh start'
