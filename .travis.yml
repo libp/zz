@@ -8,8 +8,8 @@ before_install:
 - chmod +x mvnw
 - mv src/main/resources/application-dev.yml src/main/resources/application.yml
 - cat src/main/resources/application.yml
-- sed -i '8 s/root/$PASSWD/' src/main/resources/application.yml
-- sed -i 's/127.0.0.1/$DBIP/g' src/main/resources/application.yml
+- eval sed -i '7 s/root/$PASSWD/' src/main/resources/application.yml
+- eval sed -i 's/127.0.0.1/$DBIP/g' src/main/resources/application.yml
 addons:
   ssh_known_hosts: "$IP"
 branches:
