@@ -1,4 +1,4 @@
-# 极简 [![Build Status](https://travis-ci.com/libp/zz.svg?branch=master)](https://travis-ci.com/libp/zz)
+# 极简 [![Build Status](https://www.travis-ci.org/libp/zz.svg?branch=master)](https://www.travis-ci.org/libp/zz)
 
 ##介绍
 * 基于springboot4.0+mybatis实现前后端分离
