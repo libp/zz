@@ -18,7 +18,6 @@ install:
 - sh mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 before_script:
 script:
-- npm run build
 after_script:
 - pwd
 - scp -o StrictHostKeyChecking=no -r target/  root@$IP:/opt/zz/
