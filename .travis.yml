@@ -5,6 +5,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_25e713513946_key -iv $encrypted_25e713513946_iv
   -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
+- chmod +x mvnw
 - mv src/main/resources/application-dev.yml src/main/resources/application.yml
 - cat src/main/resources/application.yml
 - sed -i 's/password:root/password:$PASSWD/g' src/main/resources/application.yml
