@@ -22,4 +22,4 @@ script:
 after_script:
 - pwd
 - scp -o StrictHostKeyChecking=no -r target/  root@$IP:/opt/zz/
-- ssh root$IP 'cd /opt/zz/ && sh /opt/zz/travisAuto.sh start'
+- ssh root@$IP 'cd /opt/zz/ && sh /opt/zz/travisAuto.sh start'
