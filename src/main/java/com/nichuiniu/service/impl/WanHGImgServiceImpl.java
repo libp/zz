@@ -59,7 +59,7 @@ public class WanHGImgServiceImpl implements WanHGImgService{
     @Override
     public List<WanHGImg> getImageByRandom(String category,int pageNum,int pageSize) {
         List<Integer> idList = wanHGImgMapper.getAllImgId(category);
-        logger.info("this one get idList id is:" + idList.toString());
+//        logger.info("this one get idList id is:" + idList.toString());
         List<Integer> indexList = new ArrayList<>();
         Random index = new Random();
         for(int i=0,j;i<pageSize;i++){
@@ -81,8 +81,8 @@ public class WanHGImgServiceImpl implements WanHGImgService{
     }
 
     @Override
-    public List<WanHGImg> selectImgByScores() {
-        return wanHGImgMapper.selectImgByScores();
+    public List<WanHGImg> selectImgByScores(String categroy) {
+        return wanHGImgMapper.selectImgByScores(categroy);
     }
 
 

@@ -218,7 +218,11 @@
   <select id="selectImgByScores" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from tbl_nichuiniu_img where Deleted!=1 ORDER BY Scores desc
+    from tbl_nichuiniu_img where Deleted!=1
+    <if test="category != null">
+      AND Category = #{category,jdbcType=VARCHAR}
+    </if>
+    ORDER BY Scores desc
   </select>
 
 

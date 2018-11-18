@@ -32,5 +32,5 @@ public interface WanHGImgMapper {
 
     int updateAuditImg(@Param("deleted") int deleted,@Param("category") String category);
 
-    List<WanHGImg> selectImgByScores();
+    List<WanHGImg> selectImgByScores(@Param("category") String category);
 }

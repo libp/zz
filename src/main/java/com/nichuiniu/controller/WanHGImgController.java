@@ -109,9 +109,20 @@ public class WanHGImgController {
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
                     int pageSize){
 
-        PageHelper.startPage(pageNum,pageSize);
-        List<WanHGImg> list = wanHGImgService.selectImgByScores();
-        PageInfo page = new PageInfo(list);
-        return  page;
+
+
+        String  auditSwitch = sysParamsService.selectSysParamsValue(WebConst.TENCENT_REVIEW);
+        if(auditSwitch!=null && auditSwitch.equalsIgnoreCase("TRUE")){
+            PageHelper.startPage(pageNum,pageSize);
+
+            List<WanHGImg> list = wanHGImgService.selectImgByScores(WebConst.GREEN_IMG);
+            PageInfo page = new PageInfo(list);
+            return  page;
+        }else{
+            PageHelper.startPage(pageNum,pageSize);
+            List<WanHGImg> list = wanHGImgService.selectImgByScores(null);
+            PageInfo page = new PageInfo(list);
+            return  page;
+        }
     }
 }
