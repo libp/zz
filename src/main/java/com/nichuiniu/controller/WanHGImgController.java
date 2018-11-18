@@ -64,6 +64,12 @@ public class WanHGImgController {
         return page;
     }
 
+    /**
+     *
+     * @param id
+     * @param scores 点击+2，收藏+5，点赞+1，被选机选中时-2
+     * @return
+     */
     @ResponseBody
     @GetMapping("/updateByPrimaryKeySelective")
     public Object updateByPrimaryKeySelective(
@@ -71,8 +77,9 @@ public class WanHGImgController {
                     int id,
             @RequestParam(name = "scores", required = false, defaultValue = "1")
                     int scores){
-        WanHGImg whg = new WanHGImg();
+        WanHGImg whg = wanHGImgService.getImageById(id);
         whg.setId(id);
+        scores = scores + whg.getScores();
         whg.setScores(scores);
         return wanHGImgService.updateByPrimaryKeySelective(whg);
     }
