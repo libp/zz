@@ -25,6 +25,8 @@ public interface WanHGImgService {
     int updateAuditImg(int deleted,String categroy);
 
     List<WanHGImg> selectImgByScores(String categroy);
+
+    ZzResult deleteByPrimaryKey(int id);
 }
 
 

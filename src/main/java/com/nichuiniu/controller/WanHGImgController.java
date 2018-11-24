@@ -6,6 +6,7 @@ import com.nichuiniu.constant.WebConst;
 import com.nichuiniu.model.WanHGImg;
 import com.nichuiniu.service.SysParamsService;
 import com.nichuiniu.service.WanHGImgService;
+import com.nichuiniu.util.ZzResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -131,5 +132,13 @@ public class WanHGImgController {
             PageInfo page = new PageInfo(list);
             return  page;
         }
+    }
+
+    @ResponseBody
+    @DeleteMapping("/deleteRecommendById")
+    public ZzResult deleteByPrimaryKey(
+            @RequestParam(name = "id", required = true)
+                    int id){
+        return wanHGImgService.deleteByPrimaryKey(id);
     }
 }

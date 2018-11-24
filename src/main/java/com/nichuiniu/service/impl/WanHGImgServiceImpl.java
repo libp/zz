@@ -85,5 +85,20 @@ public class WanHGImgServiceImpl implements WanHGImgService{
         return wanHGImgMapper.selectImgByScores(categroy);
     }
 
+    @Override
+    public ZzResult deleteByPrimaryKey(int id) {
+        boolean flag = true;
+        String message = "删除成功";
+        try {
+            wanHGImgMapper.deleteByPrimaryKey(id);
+        } catch(Exception e) {
+            flag = false;
+            message = "删除失败:";
+            logger.error(message, e);
+        }
+        ZzResult result = new ZzResult(flag, message);
+        return result;
+    }
+
 
 }
