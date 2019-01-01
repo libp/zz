@@ -116,9 +116,6 @@ public class WanHGImgController {
                     int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
                     int pageSize){
-
-
-
         String  auditSwitch = sysParamsService.selectSysParamsValue(WebConst.TENCENT_REVIEW);
         if(auditSwitch!=null && auditSwitch.equalsIgnoreCase("TRUE")){
             PageHelper.startPage(pageNum,pageSize);

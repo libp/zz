@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nichuiniu.dao.GuShiWenMapper" >
+  <resultMap id="BaseResultMap" type="com.nichuiniu.model.GuShiWen" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Num" property="num" jdbcType="VARCHAR" />
+    <result column="Title" property="title" jdbcType="VARCHAR" />
+    <result column="Author" property="author" jdbcType="VARCHAR" />
+    <result column="Dynasty" property="dynasty" jdbcType="VARCHAR" />
+    <result column="AudioUrl" property="audiourl" jdbcType="VARCHAR" />
+    <result column="Scores" property="scores" jdbcType="INTEGER" />
+    <result column="Tag" property="tag" jdbcType="VARCHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="UpdateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="Deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.nichuiniu.model.GuShiWen" extends="BaseResultMap" >
+    <result column="Content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Num, Title, Author, Dynasty, AudioUrl, Scores, Tag, CreateTime, UpdateTime, Deleted
+  </sql>
+  <sql id="Blob_Column_List" >
+    Content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tbl_nichuiniu_gushiwen
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_nichuiniu_gushiwen
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nichuiniu.model.GuShiWen" >
+    insert into tbl_nichuiniu_gushiwen (Id, Num, Title, 
+      Author, Dynasty, AudioUrl, 
+      Scores, Tag, CreateTime, 
+      UpdateTime, Deleted, Content
+      )
+    values (#{id,jdbcType=INTEGER}, #{num,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{dynasty,jdbcType=VARCHAR}, #{audiourl,jdbcType=VARCHAR}, 
+      #{scores,jdbcType=INTEGER}, #{tag,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.nichuiniu.model.GuShiWen" >
+    insert into tbl_nichuiniu_gushiwen
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="num != null" >
+        Num,
+      </if>
+      <if test="title != null" >
+        Title,
+      </if>
+      <if test="author != null" >
+        Author,
+      </if>
+      <if test="dynasty != null" >
+        Dynasty,
+      </if>
+      <if test="audiourl != null" >
+        AudioUrl,
+      </if>
+      <if test="scores != null" >
+        Scores,
+      </if>
+      <if test="tag != null" >
+        Tag,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="deleted != null" >
+        Deleted,
+      </if>
+      <if test="content != null" >
+        Content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="dynasty != null" >
+        #{dynasty,jdbcType=VARCHAR},
+      </if>
+      <if test="audiourl != null" >
+        #{audiourl,jdbcType=VARCHAR},
+      </if>
+      <if test="scores != null" >
+        #{scores,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nichuiniu.model.GuShiWen" >
+    update tbl_nichuiniu_gushiwen
+    <set >
+      <if test="num != null" >
+        Num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        Title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        Author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="dynasty != null" >
+        Dynasty = #{dynasty,jdbcType=VARCHAR},
+      </if>
+      <if test="audiourl != null" >
+        AudioUrl = #{audiourl,jdbcType=VARCHAR},
+      </if>
+      <if test="scores != null" >
+        Scores = #{scores,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null" >
+        Tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="content != null" >
+        Content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nichuiniu.model.GuShiWen" >
+    update tbl_nichuiniu_gushiwen
+    set Num = #{num,jdbcType=VARCHAR},
+      Title = #{title,jdbcType=VARCHAR},
+      Author = #{author,jdbcType=VARCHAR},
+      Dynasty = #{dynasty,jdbcType=VARCHAR},
+      AudioUrl = #{audiourl,jdbcType=VARCHAR},
+      Scores = #{scores,jdbcType=INTEGER},
+      Tag = #{tag,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT},
+      Content = #{content,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nichuiniu.model.GuShiWen" >
+    update tbl_nichuiniu_gushiwen
+    set Num = #{num,jdbcType=VARCHAR},
+      Title = #{title,jdbcType=VARCHAR},
+      Author = #{author,jdbcType=VARCHAR},
+      Dynasty = #{dynasty,jdbcType=VARCHAR},
+      AudioUrl = #{audiourl,jdbcType=VARCHAR},
+      Scores = #{scores,jdbcType=INTEGER},
+      Tag = #{tag,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--获取所有文章的ID-->
+  <select id="getAllId" resultType="java.lang.Integer" >
+    SELECT id from tbl_nichuiniu_gushiwen where Deleted!=1
+  </select>
+
+  <!--根据ID查询-->
+  <select id="selectByIdList" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM tbl_nichuiniu_gushiwen
+    WHERE id in
+    <foreach item="item" index="index" collection="list"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+
+  <!--根据得分查询排行-->
+  <select id="selectByScores" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_nichuiniu_gushiwen where Deleted!=1
+    ORDER BY Scores desc
+  </select>
+
+  <!--古诗文数-->
+  <select id="selectGuShiWenCount" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM tbl_nichuiniu_gushiwen ;
+  </select>
+
+  <!--推荐的古诗文数-->
+  <select id="selectRecommendGuShiWenCount" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM tbl_nichuiniu_recommend  where  CategoryID=502;
+  </select>
+
+  <!--插入推荐的古诗文-->
+  <insert id="insertRecommend" parameterType="java.lang.Integer">
+    insert into tbl_nichuiniu_recommend
+    (RecommendId,CategoryID) VALUES (#{id,jdbcType=INTEGER},502);
+  </insert>
+
+</mapper>

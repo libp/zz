@@ -17,4 +17,14 @@ public class WebConst {
      * 绿色图片
      */
     public static String GREEN_IMG = "GREEN_IMG";
+
+    /**
+     * 值得读读ID
+     */
+    public static final int ZHI_DE_DU_DU = 501;
+
+    /**
+     * 古诗文ID
+     */
+    public static final int GU_SHI_WEN = 502;
 }

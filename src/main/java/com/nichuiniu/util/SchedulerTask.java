@@ -1,8 +1,12 @@
 package com.nichuiniu.util;
 
 import com.nichuiniu.model.Article;
+import com.nichuiniu.model.GuShiWen;
 import com.nichuiniu.model.RecommendArticle;
 import com.nichuiniu.service.ArticleService;
+import com.nichuiniu.service.GuShiWenService;
+import com.nichuiniu.service.SysParamsService;
+import com.nichuiniu.service.WanHGImgService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +25,20 @@ public class SchedulerTask {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private GuShiWenService guShiWenService;
+
     private static final SimpleDateFormat  dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    /**
+     * @Description: 定时推荐值得读读文章
+     * @Param: []
+     * @return: void
+     * @Author: Libp
+     * @Date: 2019/1/1
+     */
     @Scheduled(cron="0 0 22 * * ?")
     private void process(){
         RecommendArticle recommendArticle = articleService.selectNewestArticle();
@@ -43,4 +57,19 @@ public class SchedulerTask {
             }
         }
     }
+
+    /**
+     * @Description: 定时推荐古诗文
+     * @Param: []
+     * @return: void
+     * @Author: Libp
+     * @Date: 2019/1/1
+     */
+    @Scheduled(cron="0 0 21 * * ?")
+    private void gushiwen(){
+        GuShiWen guShiWen = guShiWenService.selectByRandom();
+        int nextid = guShiWen.getId();
+        guShiWenService.insertRecommend(nextid);
+    }
+
 }

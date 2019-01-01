@@ -45,7 +45,9 @@
         <!--<table tableName="tbl_nichuiniu_img" domainObjectName="WanHGImg" enableCountByExample="false" enableUpdateByExample="false"-->
                <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
 
-        <table tableName="tbl_nichuiniu_params" domainObjectName="SysParams" enableCountByExample="false" enableUpdateByExample="false"
+        <!--<table tableName="tbl_nichuiniu_params" domainObjectName="SysParams" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table tableName="tbl_nichuiniu_gushiwen" domainObjectName="GuShiWen" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

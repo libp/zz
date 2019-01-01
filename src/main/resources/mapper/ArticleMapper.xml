@@ -235,7 +235,7 @@
         <include refid="Article_Column_List"/>
         from tbl_nichuiniu_article
         WHERE  Category = #{category,jdbcType=VARCHAR}
-        and id =(SELECT RecommendId from tbl_nichuiniu_recommend where Id =( SELECT MAX(id) FROM tbl_nichuiniu_recommend));
+        and id =(SELECT RecommendId from tbl_nichuiniu_recommend where  Id =( SELECT MAX(id) FROM tbl_nichuiniu_recommend where  CategoryID=501));
     </select>
 
     <select id="articleID" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
@@ -253,7 +253,7 @@
 
     <insert id="insertRecommend" parameterType="java.lang.Integer">
         insert into tbl_nichuiniu_recommend
-        (RecommendId) VALUES (#{id,jdbcType=INTEGER});
+        (RecommendId,CategoryID) VALUES (#{id,jdbcType=INTEGER},501);
     </insert>
 
     <select id="selectRecommendByPage" resultMap="ResultMapWithBLOBs">
@@ -271,7 +271,7 @@
     </select>
 
     <select id="selectRecommendArticleCount" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM tbl_nichuiniu_recommend  where RecommendId >0;
+        SELECT COUNT(*) FROM tbl_nichuiniu_recommend  where  CategoryID=501;
     </select>
 
     <select id="selectNextArticle" resultType="java.lang.Integer" parameterType="java.lang.Integer">
