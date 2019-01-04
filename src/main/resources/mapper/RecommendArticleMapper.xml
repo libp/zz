@@ -84,6 +84,6 @@
     select
     <include refid="Base_Column_List" />
     from tbl_nichuiniu_recommend
-    where id = (select max(id) from tbl_nichuiniu_recommend)
+    where id = (select max(id) from tbl_nichuiniu_recommend where Categoryid=501)
   </select>
 </mapper>
