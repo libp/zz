@@ -235,4 +235,16 @@
     (RecommendId,CategoryID) VALUES (#{id,jdbcType=INTEGER},502);
   </insert>
 
+  <!--查询推荐的古诗文列表-->
+  <select id="selectRecommendByPage" resultMap="ResultMapWithBLOBs">
+    select
+    t1.Id,t1.Num,t1.Title,t1.Content,t1.Author,t1.Dynasty,t1.AudioUrl,t1.Scores,t1.Tag,t2.CreateTime
+    from tbl_nichuiniu_gushiwen  as t1,tbl_nichuiniu_recommend as t2 where t1.id=t2.RecommendId
+  </select>
+
+  <!--删除推荐古诗文-->
+  <delete id="deleteRecommendById" parameterType="java.lang.Integer">
+    delete from tbl_nichuiniu_recommend
+    where RecommendId = #{RecommendId,jdbcType=INTEGER}
+  </delete>
 </mapper>

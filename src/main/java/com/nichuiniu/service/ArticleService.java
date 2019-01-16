@@ -27,6 +27,8 @@ public interface ArticleService {
 
     ZzResult deleteRecommendById(Integer id);
 
+    ZzResult deleteByPrimaryKey(Integer id);
+
     ZzResult insertRecommend(int id);
 
     int selectRecommendArticleCount();

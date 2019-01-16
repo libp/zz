@@ -62,6 +62,14 @@ public class ArticleController {
     }
 
     @ResponseBody
+    @DeleteMapping("/deleteByPrimaryKey")
+    public ZzResult deleteByPrimaryKey(
+            @RequestParam(name = "id", required = true)
+                    int id){
+        return articleService.deleteByPrimaryKey(id);
+    }
+
+    @ResponseBody
     @GetMapping("/selectArticleByPage")
     public Object selectArticleByPage(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")

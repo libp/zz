@@ -66,4 +66,16 @@ public interface GuShiWenService {
      * @return
      */
     List<GuShiWen> selectRecommendByPage();
+
+    /***
+     * 删除推荐的古诗文
+     * @return
+     */
+    ZzResult deleteRecommendById(Integer id);
+
+    /***
+     * 删除古诗文
+     * @return
+     */
+    ZzResult deleteByPrimaryKey(Integer id);
 }

@@ -103,12 +103,12 @@ public class GuShiWenServiceImpl implements GuShiWenService {
     @Override
     public ZzResult insertRecommend(int id) {
         boolean flag = true;
-        String message = "文章推荐成功";
+        String message = "推荐成功";
         try {
             guShiWenMapper.insertRecommend(id);
         } catch(Exception e) {
             flag = false;
-            message = "文章推荐失败:";
+            message = "推荐失败:";
             logger.error(message, e);
         }
         ZzResult result = new ZzResult(flag, message);
@@ -122,5 +122,44 @@ public class GuShiWenServiceImpl implements GuShiWenService {
     @Override
     public List<GuShiWen> selectRecommendByPage() {
         return guShiWenMapper.selectRecommendByPage();
+    }
+
+    /***
+     * 删除推荐的古诗文
+     * @return
+     * @param id
+     */
+    @Override
+    public ZzResult deleteRecommendById(Integer id) {
+        boolean flag = true;
+        String message = "删除成功";
+        try {
+            guShiWenMapper.deleteRecommendById(id);
+        } catch(Exception e) {
+            flag = false;
+            message = "删除失败:";
+            logger.error(message, e);
+        }
+        ZzResult result = new ZzResult(flag, message);
+        return result;
+    }
+
+    /***
+     * 删除古诗文
+     * @return
+     */
+    @Override
+    public ZzResult deleteByPrimaryKey(Integer id) {
+        boolean flag = true;
+        String message = "删除成功";
+        try {
+            guShiWenMapper.deleteByPrimaryKey(id);
+        } catch(Exception e) {
+            flag = false;
+            message = "删除失败:";
+            logger.error(message, e);
+        }
+        ZzResult result = new ZzResult(flag, message);
+        return result;
     }
 }

@@ -80,4 +80,28 @@ public class GushiwenController {
         PageInfo page = new PageInfo(list);
         return page;
     }
+
+    @ResponseBody
+    @GetMapping("/insertRecommend")
+    public ZzResult insertRecommend(
+            @RequestParam(name = "id", required = false, defaultValue = "1003")
+                    int id){
+        return guShiWenService.insertRecommend(id);
+    }
+
+    @ResponseBody
+    @DeleteMapping("/deleteRecommendById")
+    public ZzResult deleteRecommendById(
+            @RequestParam(name = "id", required = true)
+                    int id){
+        return guShiWenService.deleteRecommendById(id);
+    }
+
+    @ResponseBody
+    @DeleteMapping("/deleteByPrimaryKey")
+    public ZzResult deleteByPrimaryKey(
+            @RequestParam(name = "id", required = true)
+                    int id){
+        return guShiWenService.deleteByPrimaryKey(id);
+    }
 }

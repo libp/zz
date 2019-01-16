@@ -59,4 +59,10 @@ public interface GuShiWenMapper {
      * @return
      */
     List<GuShiWen> selectRecommendByPage();
+
+    /***
+     * 删除推荐的古诗文
+     * @return
+     */
+    int deleteRecommendById(Integer id);
 }
