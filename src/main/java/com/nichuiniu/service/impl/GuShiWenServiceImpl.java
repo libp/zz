@@ -1,6 +1,7 @@
 package com.nichuiniu.service.impl;
 
 import com.nichuiniu.dao.GuShiWenMapper;
+import com.nichuiniu.model.Article;
 import com.nichuiniu.model.GuShiWen;
 import com.nichuiniu.service.GuShiWenService;
 import com.nichuiniu.util.ZzResult;
@@ -112,5 +113,14 @@ public class GuShiWenServiceImpl implements GuShiWenService {
         }
         ZzResult result = new ZzResult(flag, message);
         return result;
+    }
+
+    /***
+     * 查询推荐的古诗文列表
+     * @return
+     */
+    @Override
+    public List<GuShiWen> selectRecommendByPage() {
+        return guShiWenMapper.selectRecommendByPage();
     }
 }

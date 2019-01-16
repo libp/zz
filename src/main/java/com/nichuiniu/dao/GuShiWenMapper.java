@@ -1,5 +1,6 @@
 package com.nichuiniu.dao;
 
+import com.nichuiniu.model.Article;
 import com.nichuiniu.model.GuShiWen;
 
 import java.util.List;
@@ -52,4 +53,10 @@ public interface GuShiWenMapper {
      * @return
      */
     int insertRecommend(int id);
+
+    /***
+     * 查询推荐的古诗文列表
+     * @return
+     */
+    List<GuShiWen> selectRecommendByPage();
 }

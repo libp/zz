@@ -1,5 +1,6 @@
 package com.nichuiniu.service;
 
+import com.nichuiniu.model.Article;
 import com.nichuiniu.model.GuShiWen;
 import com.nichuiniu.util.ZzResult;
 
@@ -59,4 +60,10 @@ public interface GuShiWenService {
      * @return
      */
     ZzResult insertRecommend(int id);
+
+    /***
+     * 查询推荐的古诗文列表
+     * @return
+     */
+    List<GuShiWen> selectRecommendByPage();
 }

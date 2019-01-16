@@ -66,4 +66,18 @@ public class GushiwenController {
     public int selectRecommendGuShiWenCount(){
         return guShiWenService.selectRecommendGuShiWenCount();
     }
+
+    @ResponseBody
+    @GetMapping("/selectRecommendByPage")
+    public Object selectRecommendByPage(
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
+                    int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10")
+                    int pageSize){
+        //开始分页
+        PageHelper.startPage(pageNum,pageSize);
+        List<GuShiWen> list = guShiWenService.selectRecommendByPage();
+        PageInfo page = new PageInfo(list);
+        return page;
+    }
 }
