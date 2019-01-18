@@ -60,6 +60,8 @@ public class SchedulerTask {
 
     /**
      * @Description: 定时推荐古诗文
+     * GuShiWen guShiWen = guShiWenService.timingRecommend();//根据评分从高到低推荐
+     * GuShiWen guShiWen = guShiWenService.selectByRandom();//随机获取推荐内容
      * @Param: []
      * @return: void
      * @Author: Libp
@@ -67,7 +69,7 @@ public class SchedulerTask {
      */
     @Scheduled(cron="0 0 21 * * ?")
     private void gushiwen(){
-        GuShiWen guShiWen = guShiWenService.selectByRandom();
+        GuShiWen guShiWen = guShiWenService.timingRecommend();
         int nextid = guShiWen.getId();
         guShiWenService.insertRecommend(nextid);
     }

@@ -78,4 +78,16 @@ public interface GuShiWenService {
      * @return
      */
     ZzResult deleteByPrimaryKey(Integer id);
+
+    /***
+     * 根据评分从高到低推荐古诗文
+     * @return
+     */
+    GuShiWen timingRecommend();
+
+    /***
+     * 获取最新推荐的古诗文
+     * @return
+     */
+    GuShiWen recommend();
 }

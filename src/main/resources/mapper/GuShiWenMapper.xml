@@ -242,9 +242,24 @@
     from tbl_nichuiniu_gushiwen  as t1,tbl_nichuiniu_recommend as t2 where t1.id=t2.RecommendId
   </select>
 
+  <!--定时推荐古诗文-->
+  <select id="timingRecommend" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+
+    SELECT * from tbl_nichuiniu_gushiwen where id >
+    (SELECT RecommendId from tbl_nichuiniu_recommend where CategoryID=502 ORDER BY RecommendId  desc LIMIT 1)
+    LIMIT 1
+  </select>
+
   <!--删除推荐古诗文-->
   <delete id="deleteRecommendById" parameterType="java.lang.Integer">
     delete from tbl_nichuiniu_recommend
     where RecommendId = #{RecommendId,jdbcType=INTEGER}
   </delete>
+
+  <!--获取最新推荐的古诗文-->
+  <select id="recommend" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+    select * from tbl_nichuiniu_gushiwen
+    WHERE
+    id =(SELECT RecommendId from tbl_nichuiniu_recommend where  Id =( SELECT MAX(id) FROM tbl_nichuiniu_recommend where  CategoryID=502));
+  </select>
 </mapper>

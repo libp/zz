@@ -162,4 +162,22 @@ public class GuShiWenServiceImpl implements GuShiWenService {
         ZzResult result = new ZzResult(flag, message);
         return result;
     }
+
+    /***
+     * 根据评分从高到低推荐古诗文
+     * @return
+     */
+    @Override
+    public GuShiWen timingRecommend() {
+        return guShiWenMapper.timingRecommend();
+    }
+
+    /***
+     * 获取最新推荐的古诗文
+     * @return
+     */
+    @Override
+    public GuShiWen recommend() {
+        return guShiWenMapper.recommend();
+    }
 }

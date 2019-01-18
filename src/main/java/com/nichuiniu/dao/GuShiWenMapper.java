@@ -65,4 +65,16 @@ public interface GuShiWenMapper {
      * @return
      */
     int deleteRecommendById(Integer id);
+
+    /***
+     * 定时推荐古诗文
+     * @return
+     */
+    GuShiWen timingRecommend();
+
+    /***
+     * 获取最新推荐的古诗文
+     * @return
+     */
+    GuShiWen recommend();
 }

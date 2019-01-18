@@ -33,6 +33,16 @@ public class GushiwenController {
         return guShiWenService.selectByRandom();
     }
 
+    /***
+     * 获取最新推荐的古诗文
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/recommend")
+    public GuShiWen recommend() {
+        return guShiWenService.recommend();
+    }
+
     @ResponseBody
     @GetMapping("/selectByPrimaryKey")
     public Object selectByPrimaryKey(
