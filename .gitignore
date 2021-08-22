@@ -29,4 +29,5 @@ target/
 
 *.yml
 !application-dev.yml
+!src/main/resources/application.yml
 !.travis.yml
