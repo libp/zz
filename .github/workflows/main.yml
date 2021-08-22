@@ -41,12 +41,11 @@ jobs:
       - name: Build with Maven
         run: sh mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
-
       - name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
           username: 'root'   #ssh user name
-          server: '${{ secrets.SERVER_IP }}'
+          server: ${{ secrets.SERVER_IP }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           local_path: 'target/'
           remote_path: '/opt/zz/'
@@ -60,4 +59,3 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /opt/zz/ && sh /opt/zz/travisAuto.sh start
-
