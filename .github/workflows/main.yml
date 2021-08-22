@@ -35,12 +35,11 @@ jobs:
         run: |
           mv src/main/resources/application-dev.yml src/main/resources/application.yml
           cat src/main/resources/application.yml
-          sed -i "9 s/123456/${{ secrets.DB_PWD }}/" src/main/resources/application.yml
-#          sed -i "s/127.0.0.1/$DBIP/g" src/main/resources/application.yml
+          sed -i "s/123456/${{ secrets.DB_PWD }}/" src/main/resources/application.yml
+          sed -i "s/8081/8080/g" src/main/resources/application.yml
 
       - name: Build with Maven
         run: sh mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
 
 
       - name: deploy file to server
